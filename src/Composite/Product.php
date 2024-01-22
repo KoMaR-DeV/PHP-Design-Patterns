@@ -10,7 +10,6 @@ abstract class Product implements BaseInformation
 {
     protected string $name = '';
     protected float $price = 0;
-
     protected float $weight = 0;
 
     public function name(): string
@@ -27,5 +26,4 @@ abstract class Product implements BaseInformation
     {
         return $this->weight;
     }
-
 }

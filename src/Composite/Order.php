@@ -41,14 +41,8 @@ final class Order extends Product implements OrderAction
         $this->products[] = $product;
     }
 
-    public function list(): string
+    public function list(): array
     {
-        $list = '<ul>';
-
-        foreach ($this->products as $product) {
-            $list .= '<li>' . $product->name() . ' - ' . $product->price() . '</li>';
-        }
-
-        return $list . '</ul>';
+        return $this->products;
     }
 }

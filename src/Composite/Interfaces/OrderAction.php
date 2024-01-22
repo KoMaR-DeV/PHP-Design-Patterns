@@ -8,5 +8,5 @@ interface OrderAction extends BaseInformation
 {
     public function add(BaseInformation $product): void;
 
-    public function list(): string;
+    public function list(): array;
 }
