@@ -7,7 +7,7 @@ namespace DesignPatterns\Composite\Components;
 use DesignPatterns\Composite\Interfaces\BaseInformation;
 use DesignPatterns\Composite\Product;
 
-class Component extends Product implements BaseInformation
+final class Component extends Product implements BaseInformation
 {
     public function __construct(string $name, float $price, float $weight)
     {

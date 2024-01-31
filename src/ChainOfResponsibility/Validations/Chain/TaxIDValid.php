@@ -7,16 +7,14 @@ namespace DesignPatterns\ChainOfResponsibility\Validations\Chain;
 use DesignPatterns\ChainOfResponsibility\Interfaces\ContractorInterfaces;
 use DesignPatterns\ChainOfResponsibility\Validations\Chain;
 
-class TaxIDValid extends Chain
+final class TaxIDValid extends Chain
 {
-    function check(ContractorInterfaces $contractor): array
+    public function check(ContractorInterfaces $contractor): bool
     {
         if (!$this->validateNip($contractor->getId())) {
             self::$messages[] = 'Tax ID number errors.';
 
-            if ($this->brake) {
-                return self::$messages;
-            }
+            return false;
         }
 
         return parent::check($contractor);

@@ -7,7 +7,7 @@ namespace DesignPatterns\ChainOfResponsibility;
 use DesignPatterns\ChainOfResponsibility\Interfaces\ContractorInterfaces;
 use DesignPatterns\ChainOfResponsibility\Validations\Chain;
 
-class ContractorValidation
+final class ContractorValidation
 {
     private Chain $validators;
     private ContractorInterfaces $contractor;
@@ -25,8 +25,13 @@ class ContractorValidation
         $this->validators = $validators;
     }
 
-    public function check(): array
+    public function check(): bool
     {
         return $this->validators->check($this->contractor);
+    }
+
+    public function message(): array
+    {
+        return $this->validators->message();
     }
 }

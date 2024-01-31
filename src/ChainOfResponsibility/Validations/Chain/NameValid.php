@@ -9,14 +9,12 @@ use DesignPatterns\ChainOfResponsibility\Validations\Chain;
 
 final class NameValid extends Chain
 {
-    function check(ContractorInterfaces $contractor): array
+    public function check(ContractorInterfaces $contractor): bool
     {
         if (strlen($contractor->getName()) < 2) {
             self::$messages[] = 'The name must min length two char.';
 
-            if ($this->brake) {
-                return self::$messages;
-            }
+            return false;
         }
 
         return parent::check($contractor);

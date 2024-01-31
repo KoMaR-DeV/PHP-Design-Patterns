@@ -9,16 +9,9 @@ use DesignPatterns\ChainOfResponsibility\Interfaces\ContractorInterfaces;
 abstract class Chain
 {
     private Chain $validations;
-    protected bool $brake = false;
     protected static array $messages = [];
-
-    /**
-     * @param bool $brake
-     */
-    public function __construct(bool $brake = false)
-    {
-        $this->brake = $brake;
-    }
+    
+    public function __construct() {}
 
     public function set(Chain $validator,): Chain
     {
@@ -26,13 +19,17 @@ abstract class Chain
         return $validator;
     }
 
-    public function check(ContractorInterfaces $contractor): array
+    public function check(ContractorInterfaces $contractor): bool
     {
         if (!isset($this->validations)) {
-            return self::$messages;
+            return true;
         }
 
         return $this->validations->check($contractor);
     }
 
+    public function message(): array
+    {
+        return self::$messages;
+    }
 }

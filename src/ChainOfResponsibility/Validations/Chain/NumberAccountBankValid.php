@@ -7,16 +7,14 @@ namespace DesignPatterns\ChainOfResponsibility\Validations\Chain;
 use DesignPatterns\ChainOfResponsibility\Interfaces\ContractorInterfaces;
 use DesignPatterns\ChainOfResponsibility\Validations\Chain;
 
-class NumberAccountBankValid extends Chain
+final class NumberAccountBankValid extends Chain
 {
-    function check(ContractorInterfaces $contractor): array
+    public function check(ContractorInterfaces $contractor): bool
     {
         if (!$this->checkIBAN($contractor->getBankAccountNumber())) {
             self::$messages[] = 'Not a valid account Bank number.';
 
-            if ($this->brake) {
-                return self::$messages;
-            }
+            return false;
         }
 
         return parent::check($contractor);
@@ -49,5 +47,4 @@ class NumberAccountBankValid extends Chain
         }
         return false;
     }
-
 }

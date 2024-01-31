@@ -17,19 +17,20 @@ $contractorValidation = new ContractorValidation($contractor);
 
 $validateChain = new NameValid();
 $validateChain->set(new CityValid())
-    ->set(new TaxIDValid(true))
+    ->set(new TaxIDValid())
     ->set(new NumberAccountBankValid());
 
 $contractorValidation->set($validateChain);
 
-$messages = $contractorValidation->check();
 
 ?>
 
 <ul>
-    <?php foreach ($messages as $message): ?>
-        <li><?= $message ?></li>
-    <?php endforeach; ?>
+    <?php if (!$contractorValidation->check()): ?>
+        <?php foreach ($contractorValidation->message() as $message): ?>
+            <li><?= $message ?></li>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </ul>
 
 

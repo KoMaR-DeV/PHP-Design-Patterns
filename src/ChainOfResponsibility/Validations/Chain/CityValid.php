@@ -7,16 +7,14 @@ namespace DesignPatterns\ChainOfResponsibility\Validations\Chain;
 use DesignPatterns\ChainOfResponsibility\Interfaces\ContractorInterfaces;
 use DesignPatterns\ChainOfResponsibility\Validations\Chain;
 
-class CityValid extends Chain
+final class CityValid extends Chain
 {
-    function check(ContractorInterfaces $contractor): array
+    public function check(ContractorInterfaces $contractor): bool
     {
         if (strlen($contractor->getCity()) < 2) {
             self::$messages[] = 'No localities';
 
-            if ($this->brake) {
-                return self::$messages;
-            }
+            return false;
         }
 
         return parent::check($contractor);

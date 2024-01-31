@@ -54,5 +54,4 @@ final readonly class Contractor implements ContractorInterfaces
     {
         return $this->bankAccountName;
     }
-
 }
